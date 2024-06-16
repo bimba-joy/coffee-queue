@@ -53,3 +53,8 @@ async def finish_working(order: OrderRequest):
         raise HTTPException(status_code=404, detail='Order not found or not in-progress')
     orders[order.order_id].status = 'finished'
     return {'message': 'Order is done', 'order_id': order.order_id}
+
+
+@queue_app.get("/ping/")
+async def ping():
+    return {"details": "OK", "service": "queue"}
