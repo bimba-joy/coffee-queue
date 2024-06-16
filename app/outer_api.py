@@ -19,3 +19,8 @@ async def check_order(order_id: int):
     async with aiohttp.ClientSession() as session:
         async with session.get(f'http://localhost:9999/status/{order_id}') as response:
             return await response.json()
+
+
+@outer_app.get("/ping/")
+async def ping():
+    return {"details": "OK", "service": "outer"}
